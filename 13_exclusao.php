@@ -3,7 +3,7 @@
 
 <?php
 // Conecta ao banco de dados
-$servername = "localhost";
+$servername = "localhost:3309";
 $username = "root";
 $password = "";
 $dbname = "exercicio";
@@ -15,9 +15,22 @@ if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
 
+//verifica se um id foi passado via URL para exclusão
+if (isset($_GET['id'])){
+    $id =$_GET['id'];
 
-// Digitar PHP + SQL (1º Aqui)
+    //deleta o cliente com o id espeificado 
+    $sql = "DELETE FROM clientes WHERE id='$id'";
 
+    if ($conn->query($sql) === TRUE){
+
+        //exibe a mensagem 
+        echo "<p style='color: green;'>Cliente excluido com sucesso!</p>";
+    }else{
+        //exibe a mensagem
+    echo "<p style= 'color:red;'>Erro ao excluir: " . $conn->error . "</p>";
+    }
+}
 
 // Fecha a conexão
 $conn->close();
