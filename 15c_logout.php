@@ -1,8 +1,12 @@
 <?php
+
 // Página de logout (15c_logout.php)
+session_start();
 
+// Destroi a sesso do usuario
+session_destroy();
 
-// Digitar PHP (1º Aqui)
+header("Location: 15a_sistema.php");
 
-
+exit();
 ?>
